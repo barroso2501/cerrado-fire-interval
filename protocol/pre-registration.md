@@ -61,7 +61,22 @@ Pixels classified as **stable native vegetation**: areas mapped as native vegeta
 - Areas that underwent regeneration after prior land use (secondary vegetation)
 - Transitions between native vegetation types are retained (e.g., savanna to forest)
 
-### 4.5 Data sources
+### 4.5 Pixel inclusion and burned-year logic
+
+A binary burned/unburned time series is constructed for each pixel through three sequential filters:
+
+**Filter 1 — Stable native vegetation mask**
+The persistent native vegetation raster (derived from MapBiomas LULC Collection 10) contains value `1` for pixels classified as native vegetation in every year of the series, and `nodata` (0) otherwise. Only pixels with value `1` are retained for analysis.
+
+**Filter 2 — Fire detection**
+For each year, the `fire_{year}` raster contains the LULC Collection 10 class of the burned area, and `nodata` (0) for unburned pixels. A pixel is considered burned in a given year if it has a valid (non-zero, non-nodata) value in `fire_{year}`.
+
+**Filter 3 — Native vegetation class**
+An additional filter is applied to `fire_{year}`: only pixels whose burned class corresponds to a native vegetation class in LULC Collection 10 are considered burned. Pixels burned under non-native classes (e.g., pasture, cropland) are treated as unburned for interval calculation purposes.
+
+The result for each included pixel is a 40-year binary vector (1 = burned, 0 = unburned) from which all interval types are derived.
+
+### 4.6 Data sources
 
 | Dataset | Version | Use |
 |---|---|---|
@@ -211,4 +226,4 @@ Before submitting to OSF, confirm:
 
 ---
 
-*This document was drafted on 2026-03-15 prior to any analytical access to MapBiomas Fire Collection 4 data.*
+*This document was drafted on 2026-03-15 prior to any analytical access to MapBiomas Fire Collection 4 data.*afted on 2026-03-15 prior to any analytical access to MapBiomas Fire Collection 4 data.*
