@@ -2,7 +2,7 @@
 
 **Status:** Pre-analysis — data not yet accessed  
 **GitHub repository:** https://github.com/barroso2501/cerrado-fire-interval  
-**Pre-registration:** [OSF DOI — to be added before data access]  
+**Pre-registration:** https://osf.io/swn2v (DOI pending — registration under review)  
 **Zenodo archive:** [DOI — to be added at v0.1 release]  
 
 ---
