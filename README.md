@@ -1,6 +1,7 @@
 # Fire frequency and interval structure in the Brazilian Cerrado
 
 **Status:** Pre-analysis — data not yet accessed  
+**GitHub repository:** https://github.com/barroso2501/cerrado-fire-interval  
 **Pre-registration:** [OSF DOI — to be added before data access]  
 **Zenodo archive:** [DOI — to be added at v0.1 release]  
 
