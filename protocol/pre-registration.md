@@ -4,7 +4,8 @@
 **Version:** 0.1  
 **Date:** 2026-03-15  
 **Authors:** [to be completed before submission]  
-**OSF DOI:** [to be assigned upon submission]  
+**OSF project:** https://osf.io/swn2v  
+**OSF DOI:** [pending — registration under review]  
 
 ---
 
@@ -193,7 +194,7 @@ Post-hoc decisions are not prohibited, but they must be disclosed. The pre-regis
 | OSF | Pre-registration | Submit this document before data access; DOI generated |
 | Zenodo | Archival snapshots | Release v0.1 (protocol), v1.0 (submission), v1.x (revisions) |
 
-GitHub repository: [to be created and linked here before submission]
+GitHub repository: https://github.com/barroso2501/cerrado-fire-interval
 
 ---
 
