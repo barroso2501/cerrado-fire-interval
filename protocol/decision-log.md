@@ -89,4 +89,11 @@ Copy the template below, fill in all fields, and commit this file together with 
 **Data seen at time of decision:** yes — files confirmed to exist and are accessible
 **Status:** UNREGISTERED
 ---
+Date: 2026-03-15
+Decision: Apply a native vegetation class filter to fire_{year} rasters. A pixel is considered burned in a given year only if its value in fire_{year} corresponds to a native vegetation class in LULC Collection 10. Pixels burned under non-native classes are treated as unburned.
+Alternatives considered: Use all valid (non-zero) values in fire_{year} regardless of class — simpler but would include fire events in pasture or cropland pixels that were misclassified or transitional in the LULC layer.
+Rationale: The stable native vegetation mask (Filter 1) ensures the pixel was native throughout the series, but the fire_{year} class reflects the LULC state at the time of burning. Applying the native class filter ensures consistency: only fire events occurring on native vegetation are counted as burns in the interval series. This is coherent with the study's focus on fire regimes of native vegetation.
+Data seen at time of decision: no
+Status: UNREGISTERED — added to pre-registration document on same date
+
 *[New entries go below this line]*
