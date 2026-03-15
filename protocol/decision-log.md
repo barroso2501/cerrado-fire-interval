@@ -78,5 +78,15 @@ Copy the template below, fill in all fields, and commit this file together with 
 **Status:** PRE-REGISTERED
 
 ---
-
+---
+**Date:** 2026-03-15
+**Decision:** First data access — confirmed availability of input files.
+**Files identified:**
+  - `natural_persistent_1985_2024_clip_cerrado.tif` — stable native vegetation mask, pre-clipped to Cerrado boundary
+  - `fire_{ano}_clip_cerrado.tif` — annual burned area rasters (one per year, 1985–2024), pre-clipped to Cerrado boundary
+**Alternatives considered:** n/a — this is a data availability check, not an analytical decision.
+**Rationale:** Files are already clipped to the Cerrado biome extent. No additional spatial masking step required at the biome boundary level.
+**Data seen at time of decision:** yes — files confirmed to exist and are accessible
+**Status:** UNREGISTERED
+---
 *[New entries go below this line]*
