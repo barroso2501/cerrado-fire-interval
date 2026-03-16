@@ -104,5 +104,12 @@ Copy the template below, fill in all fields, and commit this file together with 
 **Status:** UNREGISTERED — pre-data, same date as pre-registration
 
 ---
+Date: 2026-03-16
+Decision: Switch from full in-memory array to block processing with numpy memmap. Fire stack is written to disk incrementally in blocks of BLOCK_ROWS rows. Frequency is also computed block by block from the memmap.
+Alternatives considered: Downsample raster to coarser resolution; process by tile; use Dask arrays.
+Rationale: Full array allocation (40 × 82933 × 71227 uint8 = 220 GiB) caused MemoryError. Memmap writes directly to disk with no RAM limit. Block size is configurable (default 500 rows ≈ 1.4 GB per year band in RAM) and can be adjusted for available memory. No analytical change — output is identical to the original approach.
+Data seen at time of decision: yes — MemoryError occurred after mask was loaded (shape and pixel count observed)
+Status: POST-HOC — must be disclosed in manuscript methods
+
 
 *[New entries go below this line]*
