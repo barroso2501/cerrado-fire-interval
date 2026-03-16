@@ -111,5 +111,18 @@ Rationale: Full array allocation (40 × 82933 × 71227 uint8 = 220 GiB) caused M
 Data seen at time of decision: yes — MemoryError occurred after mask was loaded (shape and pixel count observed)
 Status: POST-HOC — must be disclosed in manuscript methods
 
+----
+Date: 2026-03-16
+Decision: First analytical access to fire data — notebook 01 completed successfully. Results recorded here for traceability. No analytical decisions made based on these results yet.
+Observations:
+
+Stable native vegetation pixels: 1,040,061,856
+Never burned (freq=0, fully censored): 499,659,522 (48.0%)
+Burned at least once: 540,402,334 (52.0%)
+Mean frequency: 2.82
+Max frequency: 40 (46,237 pixels burned every year)
+Frequency distribution is strongly right-skewed — majority of pixels at low frequencies
+Data seen at time of decision: yes — this entry records the first data access
+Status: POST-HOC — first data observation
 
 *[New entries go below this line]*
