@@ -124,5 +124,32 @@ Max frequency: 40 (46,237 pixels burned every year)
 Frequency distribution is strongly right-skewed — majority of pixels at low frequencies
 Data seen at time of decision: yes — this entry records the first data access
 Status: POST-HOC — first data observation
+_________
 
+Date: 2026-03-16
+Decision: Notebook 02 completed — interval metrics computed. Results recorded for traceability. No analytical decisions made based on these results yet.
+Observations:
+
+Left-censored intervals (freq > 0): 540,402,334 — mean 10.58 yrs, median 6.0
+Right-censored intervals (freq > 0): 540,402,334 — mean 10.78 yrs, median 7.0
+Mean uncensored interval (freq >= 2): 403,409,399 pixels — mean 6.35 yrs, median 4.67
+CV uncensored intervals (freq >= 3): 320,026,773 pixels — mean 0.569, median 0.557
+MCBY > 0: 540,402,334 pixels — mean 1.54, max 40
+Fully censored (freq=0): 1,071,699,161 pixels
+Note: Fully censored count (1,071,699,161) is larger than freq=0 from notebook 01 (499,659,522). Discrepancy requires investigation before proceeding — see next entry.
+Data seen at time of decision: yes
+Status: POST-HOC
+
+
+Date: 2026-03-16
+Decision: Flag discrepancy in fully_censored count for investigation. Notebook 01 reported 499,659,522 pixels with freq=0 within the stable native vegetation mask. Notebook 02 reports 1,071,699,161 fully censored pixels — roughly double. Likely cause: notebook 02 is applying fc = (freq_block == 0) to ALL pixels in the raster (including those outside the stable vegetation mask), not just pixels where frequency was set to 0 by the mask. The stable mask must be applied explicitly in notebook 02 before computing fully_censored.
+Data seen at time of decision: yes
+Status: POST-HOC — bug fix required before notebook 03
+
+Date: 2026-03-16
+Decision: Fix fully_censored.npy to apply stable native vegetation mask. Notebook 02 incorrectly marked all pixels with freq=0 as fully censored, including the 4,867,006,935 pixels outside the stable mask. Corrected in-place via notebook 02c: only pixels inside the mask with freq=0 are valid fully censored observations. All other outputs (interval_mean, interval_cv, interval_left, interval_right, interval_mcby, n_uncensored) verified correct by notebook 02b diagnostic — zero valid values outside the mask.
+Alternatives considered: Rerun full notebook 02 with explicit mask application; accept the error and filter downstream.
+Rationale: In-place fix is sufficient and avoids reprocessing ~2 hours of computation. The bug affected only fully_censored and had no downstream effect on float outputs because pixels outside the mask have freq=0, which caused fc=True and NaN assignment in all float arrays.
+Data seen at time of decision: yes
+Status: POST-HOC — bug identified after first data access
 *[New entries go below this line]*
