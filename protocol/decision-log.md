@@ -78,22 +78,31 @@ Copy the template below, fill in all fields, and commit this file together with 
 **Status:** PRE-REGISTERED
 
 ---
+
 ---
 **Date:** 2026-03-15
-**Decision:** First data access — confirmed availability of input files.
-**Files identified:**
-  - `natural_persistent_1985_2024_clip_cerrado.tif` — stable native vegetation mask, pre-clipped to Cerrado boundary
-  - `fire_{ano}_clip_cerrado.tif` — annual burned area rasters (one per year, 1985–2024), pre-clipped to Cerrado boundary
-**Alternatives considered:** n/a — this is a data availability check, not an analytical decision.
-**Rationale:** Files are already clipped to the Cerrado biome extent. No additional spatial masking step required at the biome boundary level.
-**Data seen at time of decision:** yes — files confirmed to exist and are accessible
-**Status:** UNREGISTERED
+**Decision:** Apply a native vegetation class filter to `fire_{year}` rasters. A pixel is considered burned in a given year only if its value in `fire_{year}` corresponds to a native vegetation class in LULC Collection 10. Pixels burned under non-native classes are treated as unburned.
+**Alternatives considered:** Use all valid (non-zero) values in `fire_{year}` regardless of class — simpler but would include fire events in pasture or cropland pixels that were misclassified or transitional in the LULC layer.
+**Rationale:** The stable native vegetation mask (Filter 1) ensures the pixel was native throughout the series, but the `fire_{year}` class reflects the LULC state at the time of burning. Applying the native class filter ensures consistency: only fire events occurring on native vegetation are counted as burns in the interval series. This is coherent with the study's focus on fire regimes of native vegetation.
+**Data seen at time of decision:** no
+**Status:** UNREGISTERED — added to pre-registration document on same date
+
 ---
-Date: 2026-03-15
-Decision: Apply a native vegetation class filter to fire_{year} rasters. A pixel is considered burned in a given year only if its value in fire_{year} corresponds to a native vegetation class in LULC Collection 10. Pixels burned under non-native classes are treated as unburned.
-Alternatives considered: Use all valid (non-zero) values in fire_{year} regardless of class — simpler but would include fire events in pasture or cropland pixels that were misclassified or transitional in the LULC layer.
-Rationale: The stable native vegetation mask (Filter 1) ensures the pixel was native throughout the series, but the fire_{year} class reflects the LULC state at the time of burning. Applying the native class filter ensures consistency: only fire events occurring on native vegetation are counted as burns in the interval series. This is coherent with the study's focus on fire regimes of native vegetation.
-Data seen at time of decision: no
-Status: UNREGISTERED — added to pre-registration document on same date
+**Date:** 2026-03-15
+**Decision:** Native vegetation classes for Filter 3 confirmed as: 3, 4, 5, 6, 11, 12, 29, 32, 49, 50 (MapBiomas LULC Collection 10).
+**Alternatives considered:** Including class 1 (anthropic forest) — rejected as it does not represent native vegetation in Col 10.
+**Rationale:** Classes confirmed against the official MapBiomas Collection 10 legend before any data access.
+**Data seen at time of decision:** no
+**Status:** UNREGISTERED — pre-data, same date as pre-registration
+
+---
+**Date:** 2026-03-15
+**Decision:** All native vegetation classes are aggregated into a single category for the purpose of fire interval analysis. No distinction is made between forest (e.g., class 3), savanna (e.g., class 4, 12), and grassland/campo formations (e.g., class 12, 11) at this stage.
+**Alternatives considered:** Stratify analysis by broad vegetation type (forest, savanna, grassland) from the outset, given known differences in fire resistance and resilience among these types.
+**Rationale:** The primary objective of this study is to characterize fire interval structure relative to fire frequency across stable native vegetation as a whole. Introducing vegetation type stratification at this stage would increase complexity and is beyond the current research question. However, it is explicitly acknowledged that different native vegetation types in the Cerrado have distinct fire resistance and resilience characteristics — forest formations are generally more fire-sensitive, while savanna and grassland formations are fire-adapted. Separating analyses by broad vegetation type (forest, savanna, grassland) is a well-justified extension for future work and would require reclassifying the LULC classes used in the stable vegetation mask accordingly.
+**Data seen at time of decision:** no
+**Status:** UNREGISTERED — pre-data, same date as pre-registration
+
+---
 
 *[New entries go below this line]*
