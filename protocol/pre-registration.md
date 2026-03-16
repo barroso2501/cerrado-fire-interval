@@ -5,7 +5,7 @@
 **Date:** 2026-03-15  
 **Authors:** [to be completed before submission]  
 **OSF project:** https://osf.io/swn2v  
-**OSF DOI:** [pending — registration under review]  
+**OSF DOI:** https://doi.org/10.17605/OSF.IO/THJFM  
 
 ---
 
@@ -226,4 +226,4 @@ Before submitting to OSF, confirm:
 
 ---
 
-*This document was drafted on 2026-03-15 prior to any analytical access to MapBiomas Fire Collection 4 data.*afted on 2026-03-15 prior to any analytical access to MapBiomas Fire Collection 4 data.*
+*This document was drafted on 2026-03-15 prior to any analytical access to MapBiomas Fire Collection 4 data.*
