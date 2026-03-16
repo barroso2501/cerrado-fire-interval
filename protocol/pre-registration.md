@@ -3,7 +3,7 @@
 **Status:** Registered  
 **Version:** 0.1  
 **Date:** 2026-03-15  
-**Authors:** [to be completed before submission]  
+**Authors:** Mario Barroso Ramos Neto  
 **OSF project:** https://osf.io/swn2v  
 **OSF DOI:** https://doi.org/10.17605/OSF.IO/THJFM  
 **Zenodo archive:** https://doi.org/10.5281/zenodo.19051060  
