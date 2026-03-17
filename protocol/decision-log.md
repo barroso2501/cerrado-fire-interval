@@ -168,6 +168,26 @@ Copy the template below, fill in all fields, and commit this file together with 
 **Data seen at time of decision:** yes
 **Status:** POST-HOC — clarifies pre-registration §6.3
 
+
+----
+Date: 2026-03-16
+Decision: Abandon the 16-combination (t_min × t_max pairs) classification approach in favor of two independent axes of disruption, each with its own metric and interval scope.
+Alternatives considered: 16 paired threshold combinations as originally planned in notebook 03 draft; binary disruptive/functional classification per pair.
+Rationale: The two disruption axes are ecologically independent. A pixel can show only short-interval disruption, only long-interval exclusion, or both — and these are not jointly determined by a single functional zone. Treating t_min and t_max as pairs conflates two separate ecological phenomena and forces a combined classification that obscures their independent occurrence. Separating the axes allows each to be analyzed and mapped on its own terms, with robustness evaluated independently per axis.
+Data seen at time of decision: yes
+Status: POST-HOC — replaces pre-registration §6 combined threshold approach
+
+Date: 2026-03-16
+Decision: Short disruption axis — metric is COUNT of uncensored intervals ≤ t_min (integer, 0 to n_uncensored). Four rasters, one per t_min value (0, 1, 2, 3). Censored intervals are excluded from this axis.
+Rationale: Censored intervals are lower bounds on the true interval length — a left-censored interval of 2 years may in reality be longer. Using censored intervals to detect short-interval disruption would risk false positives. Uncensored intervals are fully observed and provide unambiguous evidence of short recurrence. Count (not binary) captures intensity: a pixel with 5 short intervals is ecologically different from one with 1.
+Data seen at time of decision: yes
+Status: POST-HOC
+
+Date: 2026-03-16
+Decision: Long disruption axis — metric is LENGTH (in years) of the longest fire-free interval per pixel, considering ALL interval types: uncensored, left-censored, right-censored, and fully censored. Single raster (long_max_interval.npy). The four t_max values (15, 20, 25, 30) are applied as reading thresholds on this raster, not as separate rasters.
+Rationale: For detecting prolonged fire exclusion, any fire-free period is valid evidence regardless of its position in the series. Censored intervals are lower bounds on the true interval — including them is conservative (the true exclusion may be even longer). A single raster of maximum interval length is more informative than four binary rasters and allows flexible threshold application in downstream analysis. Fully censored pixels (freq=0) have a minimum interval of 40 years and are naturally captured.
+Data seen at time of decision: yes
+Status: POST-HOC
 ---
 
 *[New entries go below this line]*
