@@ -189,6 +189,13 @@ Rationale: For detecting prolonged fire exclusion, any fire-free period is valid
 Data seen at time of decision: yes
 Status: POST-HOC
 ---
+Date: 2026-03-16
+Decision: Correct interval length calculation in Parts B and C of notebook 03. Previous version used raw gap (distance between fire index positions) as the interval length. Corrected to gap - 1 = actual fire-free years between consecutive burns. Left-censored, right-censored, and fully censored intervals are already expressed in fire-free years and require no correction. This fix enables t_min=0 to correctly detect consecutive burns (0 fire-free years between fires, gap=1) and aligns all axes to the same unit.
+Alternatives considered: Redefine t_min values to absorb the offset (t_min=1 for consecutive burns) — rejected because it would make the threshold values unintuitive and inconsistent with the ecological literature where intervals are expressed in fire-free years.
+Rationale: Bug identified by testing the sequence 0000011101100000011100000000010001001000 — t_min=0 detected no short intervals despite visible consecutive burns. Root cause: gap=1 for consecutive burns, and the criterion was gap <= 0 (never true). Correct criterion is free_years = gap - 1 <= t_min, i.e. gap <= t_min + 1.
+Data seen at time of decision: yes
+Status: POST-HOC — bug fix
+
 
 *[New entries go below this line]*
 *[New entries go below this line]*
