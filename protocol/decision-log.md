@@ -196,6 +196,23 @@ Rationale: Bug identified by testing the sequence 000001110110000001110000000001
 Data seen at time of decision: yes
 Status: POST-HOC — bug fix
 
+------
+Date: 2026-03-16
+Decision: Notebook 03 completed and verified. Results recorded for traceability.
+Observations:
+Short disruption axis (% of all mask pixels):
+t_min=0 (consecutive burns): 12.30% with >= 1 event, 7.61% with >= 2
+t_min=1 (<=1 yr free):       23.59% with >= 1 event, 16.13% with >= 2
+t_min=2 (<=2 yrs free):      27.81% with >= 1 event, 19.85% with >= 2
+t_min=3 (<=3 yrs free):      30.17% with >= 1 event, 22.15% with >= 2
+Long disruption axis (freq > 0 pixels only, n=540,402,334):
+mean max interval: 19.55 yrs, median: 19.0 yrs
 
+= 15 yrs: 63.16% — >= 20 yrs: 49.39% — >= 25 yrs: 33.51% — >= 30 yrs: 19.03%
+Fully censored pixels (freq=0): all assigned long_max=40 yrs — correct by definition.
+Distribution of long_max shows peaks at multiples of the series length (22, 25, 36, 39 yrs)
+suggesting right-censored and left-censored intervals concentrating at those values.
+Data seen at time of decision: yes
+Status: POST-HOC — results observation
 *[New entries go below this line]*
 *[New entries go below this line]*
