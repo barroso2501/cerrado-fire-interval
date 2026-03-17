@@ -104,52 +104,71 @@ Copy the template below, fill in all fields, and commit this file together with 
 **Status:** UNREGISTERED — pre-data, same date as pre-registration
 
 ---
-Date: 2026-03-16
-Decision: Switch from full in-memory array to block processing with numpy memmap. Fire stack is written to disk incrementally in blocks of BLOCK_ROWS rows. Frequency is also computed block by block from the memmap.
-Alternatives considered: Downsample raster to coarser resolution; process by tile; use Dask arrays.
-Rationale: Full array allocation (40 × 82933 × 71227 uint8 = 220 GiB) caused MemoryError. Memmap writes directly to disk with no RAM limit. Block size is configurable (default 500 rows ≈ 1.4 GB per year band in RAM) and can be adjusted for available memory. No analytical change — output is identical to the original approach.
-Data seen at time of decision: yes — MemoryError occurred after mask was loaded (shape and pixel count observed)
-Status: POST-HOC — must be disclosed in manuscript methods
+**Date:** 2026-03-16
+**Decision:** Switch from full in-memory array to block processing with numpy memmap. Fire stack is written to disk incrementally in blocks of BLOCK_ROWS rows. Frequency is also computed block by block from the memmap.
+**Alternatives considered:** Downsample raster to coarser resolution; process by tile; use Dask arrays.
+**Rationale:** Full array allocation (40 × 82933 × 71227 uint8 = 220 GiB) caused MemoryError. Memmap writes directly to disk with no RAM limit. Block size is configurable (default 500 rows ≈ 1.4 GB per year band in RAM) and can be adjusted for available memory. No analytical change — output is identical to the original approach.
+**Data seen at time of decision:** yes — MemoryError occurred after mask was loaded (shape and pixel count observed)
+**Status:** POST-HOC — must be disclosed in manuscript methods
 
-----
-Date: 2026-03-16
-Decision: First analytical access to fire data — notebook 01 completed successfully. Results recorded here for traceability. No analytical decisions made based on these results yet.
-Observations:
+---
+**Date:** 2026-03-16
+**Decision:** First analytical access to fire data — notebook 01 completed successfully. Results recorded here for traceability. No analytical decisions made based on these results yet.
+**Observations:**
+- Stable native vegetation pixels: 1,040,061,856
+- Never burned (freq=0, fully censored): 499,659,522 (48.0%)
+- Burned at least once: 540,402,334 (52.0%)
+- Mean frequency: 2.82
+- Max frequency: 40 (46,237 pixels burned every year)
+- Frequency distribution is strongly right-skewed — majority of pixels at low frequencies
+**Data seen at time of decision:** yes — this entry records the first data access
+**Status:** POST-HOC — first data observation
 
-Stable native vegetation pixels: 1,040,061,856
-Never burned (freq=0, fully censored): 499,659,522 (48.0%)
-Burned at least once: 540,402,334 (52.0%)
-Mean frequency: 2.82
-Max frequency: 40 (46,237 pixels burned every year)
-Frequency distribution is strongly right-skewed — majority of pixels at low frequencies
-Data seen at time of decision: yes — this entry records the first data access
-Status: POST-HOC — first data observation
-_________
+---
+**Date:** 2026-03-16
+**Decision:** Notebook 02 completed — interval metrics computed. Results recorded for traceability. No analytical decisions made based on these results yet.
+**Observations:**
+- Left-censored intervals (freq > 0): 540,402,334 — mean 10.58 yrs, median 6.0
+- Right-censored intervals (freq > 0): 540,402,334 — mean 10.78 yrs, median 7.0
+- Mean uncensored interval (freq >= 2): 403,409,399 pixels — mean 6.35 yrs, median 4.67
+- CV uncensored intervals (freq >= 3): 320,026,773 pixels — mean 0.569, median 0.557
+- MCBY > 0: 540,402,334 pixels — mean 1.54, max 40
+- Fully censored (freq=0): 1,071,699,161 pixels
+**Note:** Fully censored count (1,071,699,161) is larger than freq=0 from notebook 01 (499,659,522). Discrepancy requires investigation before proceeding — see next entry.
+**Data seen at time of decision:** yes
+**Status:** POST-HOC
 
-Date: 2026-03-16
-Decision: Notebook 02 completed — interval metrics computed. Results recorded for traceability. No analytical decisions made based on these results yet.
-Observations:
+---
+**Date:** 2026-03-16
+**Decision:** Flag discrepancy in fully_censored count for investigation. Notebook 01 reported 499,659,522 pixels with freq=0 within the stable native vegetation mask. Notebook 02 reports 1,071,699,161 fully censored pixels — roughly double. Likely cause: notebook 02 is applying fc = (freq_block == 0) to ALL pixels in the raster (including those outside the stable vegetation mask), not just pixels where frequency was set to 0 by the mask. The stable mask must be applied explicitly in notebook 02 before computing fully_censored.
+**Data seen at time of decision:** yes
+**Status:** POST-HOC — bug fix required before notebook 03
 
-Left-censored intervals (freq > 0): 540,402,334 — mean 10.58 yrs, median 6.0
-Right-censored intervals (freq > 0): 540,402,334 — mean 10.78 yrs, median 7.0
-Mean uncensored interval (freq >= 2): 403,409,399 pixels — mean 6.35 yrs, median 4.67
-CV uncensored intervals (freq >= 3): 320,026,773 pixels — mean 0.569, median 0.557
-MCBY > 0: 540,402,334 pixels — mean 1.54, max 40
-Fully censored (freq=0): 1,071,699,161 pixels
-Note: Fully censored count (1,071,699,161) is larger than freq=0 from notebook 01 (499,659,522). Discrepancy requires investigation before proceeding — see next entry.
-Data seen at time of decision: yes
-Status: POST-HOC
+---
+**Date:** 2026-03-16
+**Decision:** Fix fully_censored.npy to apply stable native vegetation mask. Notebook 02 incorrectly marked all pixels with freq=0 as fully censored, including the 4,867,006,935 pixels outside the stable mask. Corrected in-place via notebook 02c: only pixels inside the mask with freq=0 are valid fully censored observations. All other outputs (interval_mean, interval_cv, interval_left, interval_right, interval_mcby, n_uncensored) verified correct by notebook 02b diagnostic — zero valid values outside the mask.
+**Alternatives considered:** Rerun full notebook 02 with explicit mask application; accept the error and filter downstream.
+**Rationale:** In-place fix is sufficient and avoids reprocessing ~2 hours of computation. The bug affected only fully_censored and had no downstream effect on float outputs because pixels outside the mask have freq=0, which caused fc=True and NaN assignment in all float arrays.
+**Data seen at time of decision:** yes
+**Status:** POST-HOC — bug identified after first data access
 
+---
+**Date:** 2026-03-16
+**Decision:** In notebook 03, disruption classification will be tested under two interval scope approaches: (A) uncensored intervals only, and (B) uncensored + censored intervals combined. Both approaches will be computed and compared. This extends the pre-registration (§6, which specified uncensored only) to include a sensitivity test with censored intervals.
+**Alternatives considered:** Uncensored only as pre-registered; censored only.
+**Rationale:** The pre-registration declares uncensored intervals as the primary scope for threshold application (§6.3). Including censored intervals as a second approach tests whether the additional temporal information at the edges of the series changes the disruption classification for a meaningful proportion of pixels. This is a methodological sensitivity test, not a change to the primary analysis.
+**Data seen at time of decision:** yes — notebooks 01 and 02 completed
+**Status:** POST-HOC — extends pre-registration scope
 
-Date: 2026-03-16
-Decision: Flag discrepancy in fully_censored count for investigation. Notebook 01 reported 499,659,522 pixels with freq=0 within the stable native vegetation mask. Notebook 02 reports 1,071,699,161 fully censored pixels — roughly double. Likely cause: notebook 02 is applying fc = (freq_block == 0) to ALL pixels in the raster (including those outside the stable vegetation mask), not just pixels where frequency was set to 0 by the mask. The stable mask must be applied explicitly in notebook 02 before computing fully_censored.
-Data seen at time of decision: yes
-Status: POST-HOC — bug fix required before notebook 03
+---
+**Date:** 2026-03-16
+**Decision:** A pixel is classified as disruptive (by excess or exclusion) if ANY of its intervals falls outside the functional zone for a given threshold pair. A single short interval (≤ t_min) or a single long interval (≥ t_max) is sufficient to classify the pixel as disruptive.
+**Alternatives considered:** Majority rule (>50% of intervals outside zone); proportion-based continuous score (P_short + P_long).
+**Rationale:** The ecological rationale for this choice is that even a single very short interval can cause irreversible structural change in fire-sensitive vegetation, and a single very long interval can allow woody encroachment that alters fire behavior for subsequent years. A majority rule would mask these ecologically meaningful events. The proportion-based approach (P_short, P_long) remains available as a continuous metric from notebook 02 outputs and can be used in downstream analyses without changing the binary classification here.
+**Data seen at time of decision:** yes
+**Status:** POST-HOC — clarifies pre-registration §6.3
 
-Date: 2026-03-16
-Decision: Fix fully_censored.npy to apply stable native vegetation mask. Notebook 02 incorrectly marked all pixels with freq=0 as fully censored, including the 4,867,006,935 pixels outside the stable mask. Corrected in-place via notebook 02c: only pixels inside the mask with freq=0 are valid fully censored observations. All other outputs (interval_mean, interval_cv, interval_left, interval_right, interval_mcby, n_uncensored) verified correct by notebook 02b diagnostic — zero valid values outside the mask.
-Alternatives considered: Rerun full notebook 02 with explicit mask application; accept the error and filter downstream.
-Rationale: In-place fix is sufficient and avoids reprocessing ~2 hours of computation. The bug affected only fully_censored and had no downstream effect on float outputs because pixels outside the mask have freq=0, which caused fc=True and NaN assignment in all float arrays.
-Data seen at time of decision: yes
-Status: POST-HOC — bug identified after first data access
+---
+
+*[New entries go below this line]*
 *[New entries go below this line]*
