@@ -231,5 +231,27 @@ Status: POST-HOC — conceptual extension, not in original pre-registration
 **Status:** POST-HOC
 
 ---
+Date: 2026-03-16
+Decision: Notebook 04 completed. Results recorded for traceability.
+Observations:
+Ratio of censored to uncensored intervals per frequency class:
+freq=0 : inf (499,659,522 fully censored — no uncensored intervals)
+freq=1 : inf (273,985,870 censored — no uncensored intervals)
+freq=2 : 2.00 (2 censored per uncensored)
+freq=3 : 1.00 (equal censored and uncensored)
+freq=4 : 0.67 — freq=5: 0.50 — freq=10: 0.22
+Key finding: for freq=0 and freq=1 (636M pixels, 61% of mask), frequency-based
+analysis captures zero interval information. For freq=2-3 (141M pixels), censored
+intervals outnumber or equal uncensored. Only from freq=4 onward do uncensored
+intervals dominate. This quantifies the structural incompleteness of frequency
+as a regime descriptor for the majority of stable native vegetation pixels.
+Censored interval means are consistently longer than uncensored means within
+each frequency class — e.g. freq=2: uncensored mean=9.7 yrs vs left=14.2,
+right=14.1 yrs — confirming that censored intervals carry distinct and
+complementary information about longer fire-free periods.
+Data seen at time of decision: yes
+Status: POST-HOC — results observation
+
+-----
 
 *[New entries go below this line]*
