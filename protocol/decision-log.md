@@ -214,5 +214,15 @@ Distribution of long_max shows peaks at multiples of the series length (22, 25, 
 suggesting right-censored and left-censored intervals concentrating at those values.
 Data seen at time of decision: yes
 Status: POST-HOC — results observation
+
+-----
+Date: 2026-03-16
+Decision: Document two analytical extensions beyond the core paper, to be developed in parallel or as subsequent work.
+EXTENSION 1 — Protected areas and indigenous territories as analysis units (within paper scope as case studies)
+All UCs and TIs of the Brazilian Cerrado above a minimum area threshold (exact threshold TBD — defined as minimum number of stable native vegetation pixels within the polygon, not total polygon area) will be used as analysis units. For each polygon, the internal composition of fire regime metrics will be characterized: distribution of interval metrics per pixel, proportion of pixels by disruption class, and internal heterogeneity. The goal is to assess whether polygons with similar total burned area or frequency show different internal regime compositions — and whether internal heterogeneity correlates with ecological or governance characteristics. Selected contrasting cases (5–10 polygons) will be presented as case studies in the paper.
+EXTENSION 2 — Stable vegetation patches as ecological units (dashboard / future work)
+The stable native vegetation raster will be segmented into contiguous patches using rook connectivity (4-neighbor, sides only — no diagonals). This is a conservative choice that requires genuine physical contiguity between pixels to define a patch. For each patch, the internal mosaico of fire regimes will be characterized — proportions of pixels by disruption class, internal heterogeneity of interval metrics, and spatial distribution of regime types within the patch. The ecological hypothesis motivating this analysis is that within-patch regime heterogeneity may reflect intermediate disturbance dynamics, where coexistence of different regime types within a patch supports higher biodiversity than homogeneous regimes. A minimum patch size threshold will be defined before analysis. This extension is more naturally suited to a dashboard or interactive tool than a conventional paper, as it requires exploration of individual patches in spatial context.
+Data seen at time of decision: yes
+Status: POST-HOC — conceptual extension, not in original pre-registration
 *[New entries go below this line]*
 *[New entries go below this line]*
