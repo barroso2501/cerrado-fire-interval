@@ -224,5 +224,12 @@ EXTENSION 2 — Stable vegetation patches as ecological units (dashboard / futur
 The stable native vegetation raster will be segmented into contiguous patches using rook connectivity (4-neighbor, sides only — no diagonals). This is a conservative choice that requires genuine physical contiguity between pixels to define a patch. For each patch, the internal mosaico of fire regimes will be characterized — proportions of pixels by disruption class, internal heterogeneity of interval metrics, and spatial distribution of regime types within the patch. The ecological hypothesis motivating this analysis is that within-patch regime heterogeneity may reflect intermediate disturbance dynamics, where coexistence of different regime types within a patch supports higher biodiversity than homogeneous regimes. A minimum patch size threshold will be defined before analysis. This extension is more naturally suited to a dashboard or interactive tool than a conventional paper, as it requires exploration of individual patches in spatial context.
 Data seen at time of decision: yes
 Status: POST-HOC — conceptual extension, not in original pre-registration
-*[New entries go below this line]*
+---
+**Date:** 2026-03-16
+**Decision:** Compute integrated interval distributions combining uncensored, left-censored, right-censored, and fully censored intervals for each frequency class. Primary approach: descriptive — censored intervals included as observed values (lower bounds), explicitly flagged as such. Secondary approach (Kaplan-Meier survival estimator) deferred — to be decided after primary results are examined. Frequency classes 0–10 computed with full interval-level detail (histogram per class). Classes 11–40 computed with summary statistics only (mean, SD, quantiles per type). Rationale: censored intervals represent a substantial fraction of the total information — especially for freq=0 (fully censored, 48% of mask) and freq=1–3 where censored intervals outnumber uncensored — and excluding them produces a systematically incomplete picture of the temporal fire history.
+**Data seen at time of decision:** yes
+**Status:** POST-HOC
+
+---
+
 *[New entries go below this line]*
