@@ -270,6 +270,26 @@ Relationship to pre-registration: the pre-registration stated the central questi
 Data seen at time of decision: yes — all notebooks completed
 Status: POST-HOC — objective refined after data analysis
 
+-----
+Date: 2026-03-19
+Decision: Define narrative structure and result presentation conventions for Paper A.
 
+UNIT OF PRESENTATION: Pixel counts will be converted to area (km² or Mha) using the 30m pixel size (1 pixel = 900 m² = 0.0009 km²). No recalculation needed — direct multiplication. Key values:
+
+Total stable native vegetation mask: ~936,056 km² (93.6 Mha)
+freq=0: ~449,694 km² (45.0 Mha)
+freq=1: ~123,294 km² (12.3 Mha)
+freq=0+1 combined: ~572,987 km² (57.3 Mha, 61.2% of mask)
+
+
+NARRATIVE DISTINCTION between freq=0 and freq=1:
+
+freq=0 exclusion from conventional analyses is an analytically justifiable choice (no fire event = no frequency signal) but ecologically consequential — it treats the most extreme fire exclusion regime as absence of data. Correctable by explicit methodological inclusion. Presented as important ecological context.
+freq=1 is the deeper and more original argument: even when included in frequency analysis, these pixels (136M pixels, 12.3 Mha, 13.2% of mask) have zero uncensored intervals — the information content of their fire regime is structurally zero under frequency-based approaches. Two freq=1 pixels with entirely opposite fire histories (early vs. late single burn) are indistinguishable. Not correctable by including freq=0 — requires changing the unit of analysis to intervals. This is the central methodological contribution.
+
+
+RESULT SELECTION confirmed: only results responding to the three objective components (structural, quantitative, ecological) enter Paper A. Spatial patterns, disruption metrics (short_tmin, long_max), MCBY by class, and ecoregion comparisons deferred to Paper B or future work.
+Data seen at time of decision: yes
+Status: POST-HOC — narrative and presentation decisions after data analysis
 -----
 *[New entries go below this line]*
