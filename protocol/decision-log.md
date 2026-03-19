@@ -253,5 +253,23 @@ Data seen at time of decision: yes
 Status: POST-HOC — results observation
 
 -----
+Date: 2026-03-19
+Decision: Finalize operational research objective after reviewing results from notebooks 01–04 and existing literature (Arruda et al. 2024, Segura-Garcia et al. 2025, Ramos-Neto & Pivello 2000).
+Operational objective:
+"We quantify the temporal fire regime information concealed by fire frequency in stable native vegetation of the Brazilian Cerrado over a 40-year period (1985–2024), by characterizing the complete interval typology — uncensored, censored, and fully censored intervals — across all frequency classes and demonstrating that censored intervals are both structurally unavoidable and ecologically distinct from those captured by frequency alone."
+Scope decisions confirmed:
 
+Unit of analysis: pixel (30m)
+No spatial drivers or causal attribution
+No temporal trends
+Restriction to stable native vegetation is a methodological choice with direct ecological interpretation consequences — documented as a strength, not merely a filter
+Paper scope: Pergunta A only (methodological with ecological implication)
+Pergunta B (spatial characterization of disruption) deferred to future work
+
+Relationship to pre-registration: the pre-registration stated the central question in broader terms. This operational objective refines and narrows that question based on the analytical results obtained. It does not contradict the pre-registration but specifies it. This refinement will be noted explicitly in the manuscript methods section.
+Data seen at time of decision: yes — all notebooks completed
+Status: POST-HOC — objective refined after data analysis
+
+
+-----
 *[New entries go below this line]*
