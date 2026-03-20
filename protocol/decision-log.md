@@ -292,4 +292,26 @@ RESULT SELECTION confirmed: only results responding to the three objective compo
 Data seen at time of decision: yes
 Status: POST-HOC — narrative and presentation decisions after data analysis
 -----
+Date: 2026-03-20
+Decision: Conceptual figure (Fig 1) finalized — v3 accepted.
+Structure: 6 rows (freq=0,1,2,4,6,8) × 2 columns (schematic timeline + gamma distributions).
+Key design decisions:
+
+freq=0: single FC bar + no-data text box (zero interval information)
+freq=1: single generic trajectory (fire at t=20, off-centre intentional); no pixel A/B labelling
+freq=2,6,8: L and R distributions combined as "L & R" annotation when medians are equal
+freq=4: L, U, R annotated separately (medians 7, 4, 6 — all distinct)
+Fire event marker (▼) added to legend
+Times New Roman throughout; 170mm width; 300 dpi
+Eixo y sem valores numéricos (relative frequency only)
+Summary box at bottom restates key pattern for reader
+
+Output files:
+D:\Projetos\Fire_Interval\figures\fig_conceptual_v3.pdf
+D:\Projetos\Fire_Interval\figures\fig_conceptual_v3.png
+Script: 06_conceptual_figure_v3.py
+Status: POST-HOC — figure design iterated after viewing data
+
+
+-----
 *[New entries go below this line]*
