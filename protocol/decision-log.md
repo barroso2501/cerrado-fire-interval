@@ -368,5 +368,52 @@ Data seen at time of decision: yes — fig_relative_error.pdf and
 relative_error_by_freq.csv reviewed before this entry
 Status: POST-HOC — all decisions made after seeing initial results
 
+
+-----
+
+Date: 2026-03-23
+Decision: Diagnostic results from verify_part_b.py — findings and implications.
+DIAGNOSTIC SUMMARY:
+
+part_b_summary.csv: 164 rows, freq=0–40, all 4 interval types present per class
+part_b_interval_distributions.csv: 1723 rows, freq=0–19 (detail classes only)
+No gaps in frequency coverage
+No discontinuity at freq=10→11 (10.3%) or freq=20→21 (9.4%) — artefact
+from interval_mean.npy confirmed absent when using part_b_summary.csv
+44 NaN values in summary = fully_censored rows for freq>0 — expected
+
+MONOTONICITY CONFIRMED:
+Mean uncensored interval decreases monotonically from freq=2 (9.70 yrs)
+to freq=40 (0.00 yrs). The apparent inflection at freq=8–10 observed in
+the initial relative error curve was a boundary artefact caused by mixing
+data sources (part_b_summary for freq<=10, interval_mean.npy for freq>10).
+With consistent data source, no inflection exists.
+RIGHT-CENSORED < UNCENSORED FOR freq=15–26 — STRUCTURAL EXPLANATION:
+Check 7 shows right_censored mean falls below uncensored mean starting at
+freq=15. This is a structural/geometric consequence of high fire frequency:
+with many events distributed across a 40-year series, the last event tends
+statistically to occur close to 2024, producing a short right-censored
+interval. This is the geometric inverse of the freq=1 case (where the single
+event tends to be far from both series boundaries, producing long censored
+intervals). This does NOT invalidate the paper's argument — the key
+asymmetry is that LEFT-censored remains systematically longer than
+uncensored across all frequency classes examined.
+ECOLOGICAL HYPOTHESIS — NOT TESTABLE WITH CURRENT DATA:
+The short right-censored intervals at high frequency classes could
+additionally reflect a concentration of recent fire events (post-2010)
+in high-frequency pixels, consistent with the shift in fire season
+documented by Arruda et al. (2024). However, separating this ecological
+signal from the structural geometric effect requires analysis of the
+temporal distribution of events within high-frequency pixels — specifically,
+testing whether the last event is closer to 2024 than expected by chance.
+This requires the fire stack at pixel level and is deferred to future work.
+Registered here as a direction for Paper B or a focused methodological note.
+NOTEBOOK 07 UPDATE REQUIRED:
+Use part_b_summary.csv for freq=2–20 entirely.
+Remove dependency on interval_mean.npy.
+Filter: freq_class >= 2 AND freq_class <= 20 AND interval_type == 'uncensored'
+High-freq fallback (interval_mean.npy) no longer needed for this analysis.
+Data seen at time of decision: yes — verify_part_b.py output reviewed
+Status: POST-HOC
 -----
 *[New entries go below this line]*
