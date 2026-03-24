@@ -312,6 +312,61 @@ D:\Projetos\Fire_Interval\figures\fig_conceptual_v3.png
 Script: 06_conceptual_figure_v3.py
 Status: POST-HOC — figure design iterated after viewing data
 
+-----
+
+Date: 2026-03-23
+Decision: Add relative error analysis as Section 3.3 of Paper A results.
+MOTIVATION:
+Fire frequency implicitly encodes a mean interval estimate as T/n (T = observation
+period, n = frequency). This estimate assumes evenly spaced fire events — an
+assumption our data demonstrate to be systematically violated. Quantifying the
+relative error of T/n against observed mean uncensored intervals constitutes a
+direct, empirical measure of how much information frequency conceals about
+interval structure.
+This analysis was motivated by the forthcoming MapBiomas Fire product that will
+include a mean interval layer calculated as T/n. The paper does not cite this
+product explicitly — the result is framed as a general information-theoretic
+assessment of frequency-derived interval estimates, applicable to any
+frequency-based fire regime characterization.
+ANALYTICAL DECISION — POST-HOC:
+Relative error defined as:
+eps_n = |T/n - I_obs| / I_obs
+where I_obs = observed mean uncensored interval for frequency class n,
+derived from part_b_summary.csv (interval_type == 'uncensored').
+KEY RESULTS FROM INITIAL RUN (freq=2–10, from part_b_summary.csv):
+freq=2:  T/n=20.0 yrs, I_obs=9.7 yrs,  error=106%
+freq=5:  T/n=8.0 yrs,  I_obs=5.04 yrs, error=59%
+freq=8:  T/n=5.0 yrs,  I_obs=3.28 yrs, error=52% (minimum observed)
+freq=10: T/n=4.0 yrs,  I_obs=2.60 yrs, error=54%
+ARTEFACT IDENTIFIED — POST-HOC:
+Initial notebook 07 computed I_obs for freq=11–40 from interval_mean.npy,
+which stores mean of ALL interval types (censored + uncensored) per pixel.
+This produced a spurious discontinuity at freq=10→11 (error dropping from
+54% to 9%). This source is INCORRECT for this analysis. Discarded.
+PATTERN OF INTEREST — POST-HOC:
+Relative error decreases from freq=2 to freq=8 (106% → 52%) but then
+slightly increases from freq=8 to freq=10 (52% → 54%). This non-monotonic
+pattern is ecologically interpretable: high-frequency pixels are not a
+random sample of native vegetation — they represent sites where fires cluster
+temporally, making T/n a worse estimator despite higher n. This observation
+motivates extending the analysis beyond freq=10 to confirm whether the
+inflection is real or a boundary effect.
+EXTENSION DECISION — POST-HOC:
+Extend DETAIL_FREQS in notebook 02 from range(0,11) to range(0,16) to
+obtain correct mean uncensored intervals for freq=11–15 from the same
+source as freq=2–10 (part_b_summary.csv). This extension was motivated
+by observing the inflection in the error curve at freq=8–10.
+NOTEBOOK CHANGES REQUIRED:
+notebook 02: DETAIL_FREQS = list(range(0, 16))
+SUMMARY_FREQS = list(range(16, 41))
+notebook 07: change freq filter from <= 10 to <= 15
+change high-freq fallback from range(11,41) to range(16,41)
+FILES TO BACKUP BEFORE RERUN:
+classification/part_b_summary.csv
+classification/part_b_interval_distributions.csv
+Data seen at time of decision: yes — fig_relative_error.pdf and
+relative_error_by_freq.csv reviewed before this entry
+Status: POST-HOC — all decisions made after seeing initial results
 
 -----
 *[New entries go below this line]*
