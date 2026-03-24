@@ -494,7 +494,51 @@ PENDING:
 
 ---
 
-*[New entries go below this line]*
+Date: 2026-03-24
+Decision: Manuscript updated to v0.2 — Section 3.3 added, all values
+corrected to Definition A, figure legends finalized for all five figures.
+CHANGES FROM v0.1:
+
+Methods: Added paragraph defining Definition A (interval = t2-t1)
+and its consistency with T/n. Distinguishes from Definition B
+(gap-1, fire-free years) used in original notebook 04.
+Section 3.1: Updated theoretical interval language from
+"fire-free interval" to "inter-event interval" for consistency
+with Definition A. Reference to Fig. 2 added.
+Section 3.2: Values corrected to Definition A:
+
+Mean uncensored freq=2: 9.7 yrs → 10.7 yrs
+Absolute difference (L-U): 4.5 yrs → 3.5 yrs
+Relative difference: 46% → 33%
+CV freq=10: 0.40 → 0.16 (Definition B value corrected)
+Language updated: "fire-free periods" → "inter-event periods"
+
+
+Section 3.3 (NEW): Relative error of frequency-derived interval
+estimate T/n. Key results:
+
+freq=2: error=87%, area=75,044 km² (8.0% of mask)
+freq=5: error=32%, area=30,611 km² (3.3%)
+freq=10: error=11%, area=12,832 km² (1.4%)
+Error >50% (freq=2 only): 75,044 km² (8.0%)
+Error >25% (freq=2–5): 197,405 km² (21.1%)
+
+
+Figure legends: All five figures now have final legends.
+Fig. X placeholders replaced with Fig. 1–5.
+Key numbers: Updated to Definition A values throughout.
+
+FILE: outputs/Cerrado_Fire_Intervals_v02.docx
+PENDING SECTIONS (not yet drafted):
+
+Introduction
+Methods (complete)
+Discussion
+Abstract
+References
+
+Status: POST-HOC — manuscript updated after all analytical results
+confirmed and figures finalized
 
 
 
