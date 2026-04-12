@@ -540,7 +540,32 @@ References
 Status: POST-HOC — manuscript updated after all analytical results
 confirmed and figures finalized
 
+Date: 2026-03-24
+Decision: Parque Nacional das Emas — case study explicitly excluded
+from Paper A scope.
+PROPOSAL: Add an illustrative analysis of Emas National Park (Ramos-Neto
+& Pivello 2000) to the discussion, showing concretely what frequency
+reveals versus what interval typology adds for a well-documented site.
+RATIONALE FOR EXCLUSION:
 
+Any spatial analysis of a specific protected area introduces
+localization, comparison with surrounding landscape, and questions
+about temporal change since 2000 — all of which are Paper B territory.
+Even a schematic calibrated with real Emas data would open the door
+to scope expansion ("what about other protected areas?").
+Paper A is complete and coherent without this addition.
+The freq=1 example in Section 4.3 already makes the same argument
+in general terms, using the 2000 paper as a reference without
+requiring new spatial analysis.
+
+ALTERNATIVE CONSIDERED: Schematic example calibrated with real Emas
+pixel values, without maps or spatial analysis. Rejected on same grounds —
+the boundary between "illustrative" and "analytical" is too easily crossed
+once a specific site is introduced.
+DECISION: Desapego. Emas remains a reference in the discussion (Section
+4.3) but not a case study. Full spatial characterization of fire regime
+typology in and around Emas deferred to Paper B.
+Status: Deliberate scope decision — not POST-HOC
 
 ---------
 *[New entries go below this line]*
